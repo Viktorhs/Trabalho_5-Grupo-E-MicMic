@@ -1,15 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////
-// Company: UFSCar
-// Author: Ricardo Menotti
-// 
-// Create Date: 27.05.2021 13:15:28
-// Project Name: Lab. Remoto de Lógica Digital - DC/UFSCar
-// Design Name: VGA Test
-// Module Name: vga
-// Target Devices: xc7z020
-// Tool Versions: Vivado v2019.2 (64-bit)
-//////////////////////////////////////////////////////////////////////////////////
-
 module top(
   input sysclk, // 125MHz
   output [3:0] led,
@@ -60,11 +48,11 @@ module vga(
 
   assign VGA_HS_O = ~vga_HS;
   assign VGA_VS_O = ~vga_VS;  
-  
-  wire [10:0] temp; // Auxiliary variable
+  wire[10:0] temp;
 
-  assign temp = CounterX * CounterY;
+  assign temp = CounterX + CounterY;
   assign VGA_R = inDisplayArea ? temp[3:0] : 4'b0000;
   assign VGA_G = inDisplayArea ? {CounterX[3:2], CounterY[1:0]} : 4'b0000;
   assign VGA_B = inDisplayArea ? temp[3:0] : 4'b0000;
+  
 endmodule
