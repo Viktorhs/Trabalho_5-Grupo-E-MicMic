@@ -48,11 +48,9 @@ module vga(
 
   assign VGA_HS_O = ~vga_HS;
   assign VGA_VS_O = ~vga_VS;  
-  wire[10:0] temp;
 
-  assign temp = CounterX + CounterY;
-  assign VGA_R = inDisplayArea ? temp[3:0] : 4'b0000;
-  assign VGA_G = inDisplayArea ? {CounterX[3:2], CounterY[1:0]} : 4'b0000;
-  assign VGA_B = inDisplayArea ? temp[3:0] : 4'b0000;
+  assign VGA_R = inDisplayArea && (CounterX == CounterY) ? 4'b1111 : 4'b0000;
+  assign VGA_G = inDisplayArea && (CounterX == CounterY) ? 4'b1111 : 4'b0000;
+  assign VGA_B = inDisplayArea && (CounterX == CounterY) ? 4'b1111 : 4'b0000; 
   
 endmodule
